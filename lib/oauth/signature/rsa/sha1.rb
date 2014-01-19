@@ -33,10 +33,10 @@ module OAuth::Signature::RSA
 
     def digest
       private_key = OpenSSL::PKey::RSA.new(
-        if options[:private_key_file]
-          IO.read(options[:private_key_file])
-        elsif options[:private_key]
+        if options[:private_key]
           options[:private_key]
+        elsif options[:private_key_file]
+          IO.read(options[:private_key_file])
         else
           consumer_secret
         end
